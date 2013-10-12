@@ -1,0 +1,17 @@
+{
+  "name": "ng2AuthFacebook",
+  "repo": "ng2/auth-facebook",
+  "description": "",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "config.js",
+    "providers/facebook.js"
+  ],
+  "styles": []
+}
