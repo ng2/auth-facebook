@@ -82,7 +82,7 @@ angular
         $timeout(function () {
           console.log("Expired!");
           $rootScope.$broadcast('ng2auth:oauth2::expired', data);
-        }, data.session.expires_in);
+        }, data.session.expires_in*1000);
       });
 
       return {
