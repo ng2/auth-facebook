@@ -78,6 +78,13 @@ angular
         }
       })
 
+      $rootScope.$on('ng2auth:oauth2::success', function (event, data) {
+        $timeout(function () {
+          console.log("Expired!");
+          $rootScope.$broadcast('ng2auth:oauth2::expired', data);
+        }, data.session.expires_in);
+      });
+
       return {
 
         /**
