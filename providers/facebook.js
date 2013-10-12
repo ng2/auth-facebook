@@ -72,6 +72,12 @@ angular
         },0);
       });
 
+      $rootScope.$on('ng2auth:oauth2::failure', function (event, data) {
+        if(data.strategy==='facebook') {
+          session = false;
+        }
+      })
+
       return {
 
         /**
