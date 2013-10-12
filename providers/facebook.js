@@ -52,19 +52,34 @@ angular
           +'&redirect_uri='+opts.redirect_uri;
       }
 
-      $rootScope.$on('ng2auth:callback::facebook', function (event, data) {
-        console.log(data.state, opts.state);
+      $rootScope.$on('ng2auth:oauth2::callback', function (event, data) {
+        if(data.strategy !== 'facebook') return;
+
         session = data.state === opts.state ? data : undefined;
 
         $timeout(function () {
-          $rootScope.$broadcast('ng2auth:login-end::facebook', {
-            status: !!session,
-            error: !!session?null:'Original and Returned State\ss don\'t match.'
-          });
+          if(!!session) {
+            $rootScope.$broadcast('ng2auth:oauth2::success', {
+              strategy: 'facebook',
+              session: session
+            });
+          } else {
+            $rootScope.$broadcast('ng2auth:oauth2::failure', {
+              strategy: 'facebook',
+              error: !!session?null:'Original and Returned State\ss don\'t match.',
+            });
+          }
         },0);
       });
 
       return {
+
+        /**
+         * @name APICall
+         * @ngdoc function
+         * @param  {String} query the query string
+         * @return {Promise}
+         */
         APICall: function (query) {
           var token = this.getAccessToken();
           query = query.split('');
@@ -93,7 +108,11 @@ angular
          * @return {Object} Something
          */
         getAccessToken: function () {
-          return session.access_token || $window.open(buildUrl(),'','width=300');
+          if(session) {
+            return session.access_token
+          } else {
+            $window.open(buildUrl(),'','width=300');
+          }
         },
 
         /**
