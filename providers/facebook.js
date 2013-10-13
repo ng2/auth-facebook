@@ -84,6 +84,10 @@ angular
         }, data.session.expires_in*1000);
       });
 
+      $rootScope.$on('ng2auth:logout::success', function (event, data) {
+        session = false;
+      });
+
       return {
 
         /**
