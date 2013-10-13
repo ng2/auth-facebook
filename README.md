@@ -37,8 +37,34 @@ var opts = {
   response_type: 'token',
   state: ''+Math.random()*0.1e19+Math.random()*0.5e19+Math.random()*0.9e19
 };
-````
+```
 
 While any and all of this can be overriden by the object passed to the `.configure` call, if you are using this with [ng2/auth](https://github.com/ng2/auth) you may want to leave the trailing `/auth/facebook/callback` in the `redirect_uri` component as `ng2/auth` handles that route for you seamlessly.
 
 And that's about it. You can start the facebook login process by calling `OAuth2.login('facebook')` from anywhere the `OAuth2` service has been injected.
+
+## OAuth2Facebook Service
+
+This service provides some functions you could find useful:
+
+### APICall (queryString)
+> Makes a Graph API query.
+
+Returns a `$q` deferred promise.
+
+```js
+OAuth2Facebook.APICall('me')
+  .then(function (profile) {
+    // do something with the user profile
+  }, function (error) {
+    // report an error
+  });
+```
+
+### getAccessToken ()
+> Returns the current `access_token` or starts the OAuth2 process.
+
+Returns a the `access_token` or null;
+
+### getConfig ()
+Returns the config set with `OAuth2FacebookProvider.configure`
