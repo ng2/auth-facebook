@@ -13,7 +13,7 @@
 */
 
 angular
-.module('ng2AuthFacebook')
+.module('ng2-auth-facebook')
 .provider('OAuth2Facebook', function () {
   /**
    * @name options

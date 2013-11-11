@@ -1,4 +1,4 @@
-angular.module('ng2AuthFacebook')
+angular.module('ng2-auth-facebook')
 .config(['$injector', 'OAuth2Provider'
   , function ($injector, OAuth2Provider) {
   OAuth2Provider.addStrategy({
