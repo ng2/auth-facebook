@@ -68,3 +68,6 @@ Returns a the `access_token` or null;
 
 ### getConfig ()
 Returns the config set with `OAuth2FacebookProvider.configure`
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ng2/auth-facebook/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
